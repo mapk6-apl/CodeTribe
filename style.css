@@ -246,6 +246,7 @@ footer {
 .footer-left,
 .footer-center {
     flex: 1;
+    margin-right: 30px;
 }
 
 .footer-left p,
