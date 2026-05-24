@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -17,12 +21,29 @@ header {
     padding: 20px 50px;
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .logo {
     font-size: 24px;
     font-weight: bold;
     color: #333;
+}
+
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #333;
+    padding: 5px;
+}
+
+.nav-menu {
+    display: flex;
 }
 
 nav ul {
@@ -35,12 +56,18 @@ nav a {
     text-decoration: none;
     color: #333;
     font-weight: 500;
-    transition: color 0.3s;
+    transition: color 0.3s, transform 0.2s;
+    display: inline-block;
 }
 
-nav a:hover,
+nav a:hover {
+    color: #007bff;
+    transform: translateY(-2px);
+}
+
 nav a.active {
     color: #007bff;
+    border-bottom: 2px solid #007bff;
 }
 
 main {
@@ -118,6 +145,12 @@ main {
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid #e0e0e0;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.profile-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
 
 .about-page,
@@ -270,12 +303,13 @@ footer {
     color: #fff;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s;
     text-decoration: none;
 }
 
 .social-icon:hover {
     background-color: #007bff;
+    transform: scale(1.1);
 }
 
 .footer-right {
@@ -294,14 +328,35 @@ footer {
 }
 
 @media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        gap: 20px;
-        padding: 20px;
+    .hamburger {
+        display: block;
     }
     
-    nav ul {
+    .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        flex-direction: column;
+        padding: 20px;
+        display: none;
+    }
+    
+    .nav-menu.active {
+        display: flex;
+    }
+    
+    .nav-menu ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    header {
+        flex-direction: row;
         gap: 20px;
+        padding: 20px;
     }
     
     .about {
@@ -332,5 +387,42 @@ footer {
     
     .footer-right {
         flex: none;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    header {
+        padding: 20px 30px;
+    }
+    
+    .about {
+        padding: 50px 30px;
+        gap: 30px;
+    }
+    
+    .about-page,
+    .contact-page {
+        padding: 50px 30px;
+    }
+    
+    footer {
+        padding: 25px 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-text h1,
+    .about-page h1,
+    .contact-page h1 {
+        font-size: 28px;
+    }
+    
+    .profile-image {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .hero {
+        height: 300px;
     }
 }
